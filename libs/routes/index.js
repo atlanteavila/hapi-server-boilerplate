@@ -2,6 +2,7 @@
 const Hapi = require('hapi');
 const Joi = require('joi');
 const HealthCheck = require('../handlers/HealthCheck');
+const WebHooks = require('../handlers/WebHooks')
 
 exports.plugin = {
     register: async function (server, options) {
@@ -12,7 +13,27 @@ exports.plugin = {
             handler: HealthCheck.callBackEndpoint,
             options: {
                 tags: ['api'],
-                description: "This is used to test whether check-in-check-out service is running up or not."
+                description: "This is used to test whether this server is running up or not."
+            }
+
+        });
+
+        server.route({
+            method: 'POST',
+            path: '/web-hooks-lockers',
+            handler: WebHooks.callBackEndpoint,
+            options: {
+                tags: ['api'],
+                description: "Used to receive the order information from a specified locker.",
+                validate: {
+                    payload: {
+                        lockerInformation: Joi.object()
+                    },
+                    headers: Joi.object({
+                    }).options({
+                        allowUnknown: true
+                    })
+                }
             }
 
         });

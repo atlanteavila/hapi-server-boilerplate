@@ -16,34 +16,18 @@
     },
     "swagger": {
         "info": {
-            "title": "check in/out service",
+            "title": "Test Server",
             "version": "1.0.0"
         },
         "host": "localhost:9090"
     },
     "services": {
-        "hwInterfaceService": {
-            "host": "http://localhost",
-            "port": "5000",
-            "paths": {
-                "baseURL": "v1/parcel-lockers/towers",
-                "slots": "/slots",
-                "firmware": "/firmware",
-                "comms": "/comms"
-            }
-        },
         "apiService": {
             "host": "http://localhost",
             "port": "8082",
             "paths": {
                 "locker_slot_shut": "api/v1/locker_slot_shut"
             }
-        }
-    },
-    "slotConfig": {
-        "timeout": {
-            "interval": 3000,
-            "noOfIterations": 20
         }
     }
 }

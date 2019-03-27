@@ -1,12 +1,16 @@
 'use strict';
 
 const Boom = require("boom");
-const webhooks = {};
+const WebHooks = {};
 
 
 //handles checkin requests
-webhooks.callBackEndpoint = (request, h) => {
-
+WebHooks.callBackEndpoint = (req, h) => {
+    return h.response({
+        success: true,
+        message: 'Received data',
+        data: req.payload
+    })
 }
 
-module.exports = Locker
+module.exports = WebHooks
